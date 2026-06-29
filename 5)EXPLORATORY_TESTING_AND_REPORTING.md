@@ -1,4 +1,4 @@
-The goal of this exploratory session was to test the main ecommerce user journey from a real users perspective, with a couple of focuses. Product discovery through search and casual browsing on them, cart behavior mostly adding products into cart, checkout flow, and general usability (sign up and login) are some subject that some automated tests might not catch that easy or it would take some time. My idea was to lean on the things I have mentioned in document TestStrategyAndPlaning, and also to cover different severeties. Continuing that approach I have done different types of test for API and E2@ tests as well, trying to cover as much different things as I can. 
+The goal of this exploratory session was to test the main ecommerce user journey from a real users perspective, with a couple of focuses. Product discovery through search and casual browsing on them, cart behavior mostly adding products into cart, checkout flow, and general usability (sign up and login) are some subject that some automated tests might not catch that easy or it would take some time. My idea was to lean on the things I have mentioned in document TestStrategyAndPlaning, and also to cover different severities and priorities. Continuing that approach I have done different types of test for API and E2E tests as well, trying to cover as much different things as I can. 
 
 
 
@@ -8,7 +8,7 @@ Overall, the application supports the main e-commerce flow, but there are a few 
 
 
 ### Issue 1: Checkout flow depends on user state
-Area: Cart / Log in / Checkout; Severity: Medium ; Priority: High
+Area: Cart / Log in / Checkout; Severity: Medium ; Priority: Medium
 Subject of the test – general usibility/checkout
 The checkout is highly dependent on whether the user is already logged in. If a user adds products to the cart first, without logging in and then tries to proceed to checkout, the application redirects the user to login/signup.
 - This is expected behavior, but it is also a risky area because the cart state must be preserved and remain exactly the saome after login. If the cart is lost after authentication, the user may abandon the purchase.
