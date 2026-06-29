@@ -1,4 +1,4 @@
-The goal of this exploratory session was to test the main ecommerce user journey from a real users perspective, with a couple of focuses. Product discovery through search and casual browsing on them, cart behavior mostly adding products into cart, checkout flow, and general usability (sign up and login) are some subject that some automated tests might not catch that easy or it would take some time.
+The goal of this exploratory session was to test the main ecommerce user journey from a real users perspective, with a couple of focuses. Product discovery through search and casual browsing on them, cart behavior mostly adding products into cart, checkout flow, and general usability (sign up and login) are some subject that some automated tests might not catch that easy or it would take some time. My idea was to lean on the things I have mentioned in document TestStrategyAndPlaning, and also to cover different severeties. Continuing that approach I have done different types of test for API and E2@ tests as well, trying to cover as much different things as I can. 
 
 
 
