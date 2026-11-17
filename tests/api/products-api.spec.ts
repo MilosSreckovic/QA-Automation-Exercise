@@ -6,6 +6,9 @@ const baseUrl = 'https://automationexercise.com/api';
 test('GET all products returns valid product list', async ({ request }) => {
   const response = await request.get(`${baseUrl}/productsList`);
 
+  console.log('HTTP STATUS:', response.status());
+  console.log('RESPONSE BODY:', (await response.text()).slice(0, 500));
+
   expect(response.status()).toBe(200);
 
   const body = await response.json();
