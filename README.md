@@ -1,70 +1,212 @@
+
+# Playwright API Automation Framework
+
+API test automation project built with **Playwright and TypeScript**, using the Automation Exercise demo application.
+
+The project demonstrates practical API testing techniques, including positive and negative test scenarios, response validation, test isolation, reusable test utilities, and test data cleanup.
+
 ## Project Overview
-This project is a QA Automation process task by using the www.automationexercise.com demo application.
 
-The goal of the project is to demonstrate a my testing approach, including API automation, test strategy, execution instructions, exploratory testing notes, and improvement considerations.
+The main objective is to build a reliable, maintainable, and easy-to-understand API automation suite.
 
-The solution focuses on my opinio on critical user flows such as product listing, authentication, account creation, and account deletion.
+The framework focuses on:
+
+- REST API functional testing
+- Positive and negative test scenarios
+- HTTP status and business response validation
+- API response structure and data validation
+- Independent test execution
+- Dynamic test data generation
+- Test account creation and cleanup
+- Parallel test execution
+- HTML reporting and CI-ready configuration
+
+**Application under test:** https://automationexercise.com
 
 ## Technology Stack
-The project is built using the following technologies:
-Playwright
-TypeScript
-npm
-Node.js
-Visual Studio Code
 
-The test suite currently focuses on API automation and is configured to run on Chromium.
+| Technology | Purpose |
+|------------|---------|
+| Playwright | API test automation |
+| TypeScript | Test implementation |
+| Node.js | JavaScript runtime |
+| npm | Dependency management |
+| Git & GitHub | Version control |
+| Playwright HTML Reporter | Test execution reporting |
 
-## Prerequisites
-Before running the project, ensure that the following tools are installed:
-Node.js (v24.18.0 or later)
-npm (v11.16.0 or later)
-Playwright browsers (eve though we use only Chromiim)
+The project uses Playwright's APIRequestContext for HTTP requests and does not require browser installation for API test execution.
 
-Detailed execution instructions are available in the `TEST_EXECUTION_AND_WIRING.md` document.
+## Test Coverage
 
-## Installation
-Clone the repository and install the required dependencies:
-npm install
+### Authentication API
 
-Install Playwright browsers:
-npx playwright install
+- Verify login request with missing credentials
+- Create a new user account
+- Verify login with valid credentials
+- Delete an existing user account
 
-For detailed setup and execution instructions, refer to the `TEST_EXECUTION_AND_WIRING.md` document.
+### Products API
 
-## Running the Tests
-Run the entire test suite:
-npm test
+- Retrieve the product list
+- Validate product response structure
+- Verify product identifiers, names, prices, and brands
+- Verify unsupported HTTP method handling
 
-Run API tests only:
-npm run test:api
+Additional test scenarios are maintained in the project's test suite.
 
-Open the Playwright HTML report:
-npm run report
+## Framework Design
 
-Additional execution options and available scripts are documented in `TEST_EXECUTION_AND_WIRING.md` document.
+### Test Independence
+
+Tests are designed to execute independently without relying on the execution order of other tests.
+
+### Dynamic Test Data
+
+Unique email addresses are generated for test accounts to reduce conflicts between executions.
+
+### Reusable Functions
+
+Common account operations are implemented as reusable functions to reduce code duplication and improve readability.
+
+### Test Data Cleanup
+
+Tests that create accounts include cleanup logic to remove temporary test data.
+
+Cleanup is attempted when the relevant test fails, although successful cleanup also depends on API availability and response handling.
+
+### API Validation
+
+Tests validate both HTTP status codes and application-specific response codes.
+
+Product responses are checked for expected data types and required values.
 
 ## Project Structure
-├── tests 
-│ └── api 
-│   ├── products-api.spec.ts 
-│   └── authentication-api.spec.ts 
 
-The project structure is intentionally kept simple and focused on eady readability and maintainability
-API tests are grouped under the tests/api directory, while project documentation is separated into dedicated documents for easier navigation and easier review.
+```text
+QA-Automation-Exercise/
+|
+|-- tests/
+|   |-- api/
+|       |-- authentication-api.spec.ts
+|       |-- products-api.spec.ts
+|
+|-- playwright.config.ts
+|-- package.json
+|-- README.md
+```
 
-## Assumptions
-The Automation Exercise application and its API endpoints are available and stable
-Test accounts can be created and deleted during execution
-The scope of the assignment focuses on demonstrating testing approach and code review
-The current API account-related tests use serial execution because they share the same dynamically created user
+Additional documentation files provide information about test strategy, execution, exploratory testing, and improvement considerations.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+- Git
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/MilosSreckovic/QA-Automation-Exercise.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd QA-Automation-Exercise
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+## Running Tests
+
+Run the complete test suite:
+
+```bash
+npx playwright test
+```
+
+Run authentication API tests:
+
+```bash
+npx playwright test authentication-api.spec.ts
+```
+
+Run products API tests:
+
+```bash
+npx playwright test products-api.spec.ts
+```
+
+Run a specific test:
+
+```bash
+npx playwright test --grep "POST verify login with valid credentials"
+```
+
+Open the HTML report:
+
+```bash
+npx playwright show-report
+```
+
+## Test Configuration
+
+The Playwright configuration includes:
+
+- Parallel test execution
+- CI-specific retry configuration
+- CI worker limits
+- Test execution timeout
+- Centralized API base URL
+- HTML and console reporting
+- Trace collection on retries
+
+The configuration is intended to support both local execution and future CI/CD integration.
+
+## Test Strategy
+
+The testing approach prioritizes:
+
+1. Critical API functionality
+2. Authentication and account management
+3. Product data integrity
+4. Negative scenarios and error handling
+5. Test reliability and maintainability
+
+Tests are designed to validate observable API behavior rather than implementation details.
+
+## Future Improvements
+
+- Expand negative API test coverage
+- Introduce API response schema validation
+- Improve test data management and cleanup reliability
+- Add GitHub Actions CI/CD execution
+- Introduce environment-based configuration
+- Extend API test coverage to additional endpoints
 
 ## Additional Documentation
-1 --> TEST_STRATEGY_AND_PLANNIG.md – test strategy, scope, priorities, and testing approach.
-2 --> API AUTOMATION - the code and classes is in api folder
 
-3 --> END TO END AUTOMATION - As I already mentioned in the first interview with Andre, but I also have to point out with Edin now, I have no experience on worrking with Playwrigth workwise (like working on some actual project). The experience I have gained in the last few weeks was with the Udemy platform and it was mostly for API testing and it was enough for me to cover that part. I have become familiar that I can do these types of tasks. As for the end-to-end tests, I'm in the process of listening and I believe I could answer them in a couple of days/weeks. As for a lot of things I am clear and readable, I just need a little more to pick up the whole syntax as well as the style of test writting. Since I know c# and java, and I have already switched from one to another programming language once, I believe that I would very quickly become efficient in typescript as well. Regarding that I will answer to this part in c# hoping that you can see something there that can convince of what I just said. 
+The repository also includes supporting documentation covering:
 
-4 --> TEST_EXECUTION_AND_WIRING.md – installation, execution instructions, configuration, and CI/CD notes
-4a --> ADDITIONAL_NOTES.md – reporting, flakiness considerations, and future improvements
-5 --> EXPLORATORY_TESTING_AND_REPORTING.md – exploratory testing charter, risks, and observations
+- Test strategy and planning
+- Test execution and configuration
+- Exploratory testing and reporting
+- Additional observations and improvement considerations
+
+## Author
+
+**Milos Sreckovic**
+
+Senior QA Automation Engineer
+
+6+ years of experience in test automation, API testing, performance engineering, and software quality assurance.
+
+**GitHub:** https://github.com/MilosSreckovic
