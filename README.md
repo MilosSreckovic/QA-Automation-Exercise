@@ -1,6 +1,9 @@
 
 # Playwright API Automation Framework
 
+
+[![Playwright API Tests](https://github.com/MilosSreckovic/QA-Automation-Exercise/actions/workflows/playwright-api.yml/badge.svg)](https://github.com/MilosSreckovic/QA-Automation-Exercise/actions/workflows/playwright-api.yml)
+
 API test automation project built with **Playwright and TypeScript**, using the Automation Exercise demo application.
 
 The project demonstrates practical API testing techniques, including positive and negative test scenarios, response validation, test isolation, reusable test utilities, and test data cleanup.
